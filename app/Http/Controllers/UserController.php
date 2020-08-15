@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -56,7 +57,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-
+        Log::info('User id shown: '. $id);
+        die('check log');
     }
 
     /**
@@ -91,5 +93,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * custom function not made automatically should add these before the resource functions in api.php
+     */
+    public function approve($user_id)
+    {
+        $user = User::findOrFail($user_id);
+        // yourlogic here....
     }
 }

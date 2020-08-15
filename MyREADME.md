@@ -11,3 +11,5 @@ $ php artisan ui [bootstrap|vue|react] (select one)
 $ php artisan ui bootstrap --auth
 now go back to the app and try to register user, login & logout
 
+php artisan make:controller UserController --resource (will create the correct endpoints create, store, show etc...)
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -14,9 +15,15 @@ class UserController extends Controller
      */
     public function index()
     {
-        $userModel = new \App\User; 
-        $user = $userModel->find(1);
-        dd($user->birthdate);
+        // mutators
+        $user = User::find(1);
+        // dd($user->birthdate);
+
+        //scopes (imagine this was in multiple functions) & 
+        // we required logic to find out users that are born this year we can use a scope to make it cleaner
+        // $users = User::bornThisYear()->orderBy('birthdate')->get();
+        $users = User::bornYear(date('Y'))->orderBy('birthdate')->get();
+        dd($users->toArray());       
         
     }
 

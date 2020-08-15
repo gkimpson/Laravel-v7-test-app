@@ -44,4 +44,20 @@ class User extends Authenticatable
     public function getBirthdateAttribute($timestamp) {
         return Carbon::parse($timestamp)->format('d/m/Y');
     }    
+
+    /**
+     * using scopes
+     */
+    public function scopeBornThisYear($query)
+    {
+        return $query->whereYear('birthdate', date('Y'));
+    }
+
+    /**
+     * using scope with additional params
+     */
+    public function scopeBornYear($query, $year)
+    {
+        return $query->whereYear('birthdate', $year);
+    }    
 }
